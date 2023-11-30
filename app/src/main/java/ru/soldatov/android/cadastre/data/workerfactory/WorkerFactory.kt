@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import ru.soldatov.android.cadastre.data.news.workers.LoadDataWorker
+import ru.soldatov.android.cadastre.data.definitions.workers.LoadDefinitionsDataWorker
+import ru.soldatov.android.cadastre.data.news.workers.LoadNewsDataWorker
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -19,8 +20,14 @@ class WorkerFactory @Inject constructor(
         workerParameters: WorkerParameters
     ): ListenableWorker? {
         return when (workerClassName) {
-            LoadDataWorker::class.qualifiedName -> {
-                val childWorkerFactory = workersProviders[LoadDataWorker::class.java]?.get()
+            LoadDefinitionsDataWorker::class.qualifiedName -> {
+                val childWorkerFactory =
+                    workersProviders[LoadDefinitionsDataWorker::class.java]?.get()
+                return childWorkerFactory?.create(appContext, workerParameters)
+            }
+            LoadNewsDataWorker::class.qualifiedName -> {
+                val childWorkerFactory =
+                    workersProviders[LoadNewsDataWorker::class.java]?.get()
                 return childWorkerFactory?.create(appContext, workerParameters)
             }
             else -> null

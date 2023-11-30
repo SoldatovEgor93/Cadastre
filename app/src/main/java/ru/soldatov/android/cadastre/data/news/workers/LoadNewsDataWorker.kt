@@ -10,10 +10,10 @@ import androidx.work.WorkerParameters
 import ru.soldatov.android.cadastre.data.workerfactory.ChildWorkerFactory
 import ru.soldatov.android.cadastre.data.news.database.NewsDao
 import ru.soldatov.android.cadastre.data.news.mapper.NewsMapper
-import ru.soldatov.android.cadastre.data.news.network.ApiService
+import ru.soldatov.android.cadastre.data.network.ApiService
 import javax.inject.Inject
 
-class LoadDataWorker(
+class LoadNewsDataWorker(
     context: Context,
     workerParams: WorkerParameters,
     private val apiService: ApiService,
@@ -24,7 +24,6 @@ class LoadDataWorker(
     override suspend fun doWork(): Result {
         val listResponse = apiService.getNewsList()
         return if (listResponse.list != null) {
-            Log.d("LoadWorker", listResponse.list.size.toString())
             val dbMapList = listResponse.list.map {
                 mapper.mapResponseToDbModel(it)
             }
@@ -41,7 +40,7 @@ class LoadDataWorker(
         const val NAME = "LoadNewsWorker"
 
         fun makeRequest(): OneTimeWorkRequest {
-            return OneTimeWorkRequestBuilder<LoadDataWorker>().build()
+            return OneTimeWorkRequestBuilder<LoadNewsDataWorker>().build()
         }
     }
 
@@ -55,7 +54,7 @@ class LoadDataWorker(
             context: Context,
             workerParameters: WorkerParameters
         ): ListenableWorker {
-            return LoadDataWorker(
+            return LoadNewsDataWorker(
                 context,
                 workerParameters,
                 apiService,
