@@ -2,7 +2,7 @@ package ru.soldatov.android.cadastre.data.news.mapper
 
 import ru.soldatov.android.cadastre.data.news.database.NewsDbModel
 import ru.soldatov.android.cadastre.data.news.model.NewsResponseDto
-import ru.soldatov.android.cadastre.domain.news.News
+import ru.soldatov.android.cadastre.domain.news.model.News
 import javax.inject.Inject
 
 class NewsMapper @Inject constructor() {

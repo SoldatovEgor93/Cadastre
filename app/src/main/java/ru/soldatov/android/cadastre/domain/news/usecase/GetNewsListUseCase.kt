@@ -1,7 +1,7 @@
 package ru.soldatov.android.cadastre.domain.news.usecase
 
 import androidx.lifecycle.LiveData
-import ru.soldatov.android.cadastre.domain.news.News
+import ru.soldatov.android.cadastre.domain.news.model.News
 import ru.soldatov.android.cadastre.domain.news.repository.NewsRepository
 import javax.inject.Inject
 

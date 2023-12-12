@@ -1,4 +1,4 @@
-package ru.soldatov.android.cadastre.data.news.network
+package ru.soldatov.android.cadastre.data.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,5 +20,5 @@ object ApiFactory {
         .client(okHttpClient)
         .build()
 
-    val apiService: ApiService =  retrofit.create()
+    val apiService: ApiService = retrofit.create()
 }

@@ -1,14 +1,26 @@
-package ru.soldatov.android.cadastre.data.news.database
+package ru.soldatov.android.cadastre.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import ru.soldatov.android.cadastre.data.definitions.database.DefinitionDbModel
+import ru.soldatov.android.cadastre.data.definitions.database.DefinitionsDao
+import ru.soldatov.android.cadastre.data.news.database.NewsDao
+import ru.soldatov.android.cadastre.data.news.database.NewsDbModel
 
-@Database(entities = [NewsDbModel::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        NewsDbModel::class,
+        DefinitionDbModel::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
+    abstract fun definitionsDao(): DefinitionsDao
 
     companion object {
 

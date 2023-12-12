@@ -7,8 +7,8 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import ru.soldatov.android.cadastre.data.news.database.NewsDao
 import ru.soldatov.android.cadastre.data.news.mapper.NewsMapper
-import ru.soldatov.android.cadastre.data.news.workers.LoadDataWorker
-import ru.soldatov.android.cadastre.domain.news.News
+import ru.soldatov.android.cadastre.data.news.workers.LoadNewsDataWorker
+import ru.soldatov.android.cadastre.domain.news.model.News
 import ru.soldatov.android.cadastre.domain.news.repository.NewsRepository
 import javax.inject.Inject
 
@@ -31,9 +31,9 @@ class NewsRepositoryImpl @Inject constructor(
     override fun loadNews() {
         val workManager = WorkManager.getInstance(appContext)
         workManager.enqueueUniqueWork(
-            LoadDataWorker.NAME,
+            LoadNewsDataWorker.NAME,
             ExistingWorkPolicy.REPLACE,
-            LoadDataWorker.makeRequest()
+            LoadNewsDataWorker.makeRequest()
         )
     }
 }

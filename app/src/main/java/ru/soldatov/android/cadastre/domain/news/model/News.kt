@@ -1,4 +1,4 @@
-package ru.soldatov.android.cadastre.domain.news
+package ru.soldatov.android.cadastre.domain.news.model
 
 data class News(
     val id: Int,

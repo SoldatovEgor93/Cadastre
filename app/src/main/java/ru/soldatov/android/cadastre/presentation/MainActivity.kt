@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         tv.setOnClickListener {
             viewModel.refresh()
         }
-        viewModel.newsList.observe(this) {
+//        viewModel.newsList.observe(this) {
+//            Log.d("MainActivity", "${it.size}")
+//        }
+        viewModel.definitionsList.observe(this) {
             Log.d("MainActivity", "${it.size}")
         }
     }
